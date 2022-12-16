@@ -19,15 +19,14 @@ class BinarySearchTree {
       let parentNode = this.root;
       let bool = false;
       while (bool === false) {
-        while (value > parentNode.value) {
+        if (value > parentNode.value) {
           if (parentNode.right !== null) {
             parentNode = parentNode.right;
           } else {
             parentNode.right = newNode;
             bool = !bool;
           }
-        }
-        while (value < parentNode.value) {
+        } else if (value < parentNode.value) {
           if (parentNode.left !== null) {
             parentNode = parentNode.left;
           } else {
@@ -49,10 +48,7 @@ class BinarySearchTree {
         if (parent.value === value) {
           return true;
         } else {
-          while (value > parent.value) {
-            if (parent === null) {
-              return false;
-            }
+          if (value > parent.value) {
             parent = parent.right;
             if (!parent) {
               return false;
@@ -60,8 +56,7 @@ class BinarySearchTree {
             if (parent.value === value) {
               return true;
             }
-          }
-          while (value < parent.value) {
+          } else if (value < parent.value) {
             parent = parent.left;
             if (!parent) {
               return false;
@@ -88,5 +83,20 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
+
+console.log(
+  tree.lookup(9),
+  tree.lookup(4),
+  tree.lookup(6),
+  tree.lookup(20),
+  tree.lookup(170),
+  tree.lookup(15),
+  tree.lookup(1),
+  tree.lookup(3),
+  tree.lookup(6),
+  tree.lookup(188),
+  tree.lookup(145),
+  tree.lookup(16)
+);
 
 console.log(tree);
